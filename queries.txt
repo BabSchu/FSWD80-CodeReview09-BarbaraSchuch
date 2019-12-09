@@ -1,0 +1,35 @@
+Query 1:
+
+SELECT customer.first_name, customer.last_name, car_model.car_model_name
+FROM `customer` 
+INNER JOIN 
+rental_contract on rental_contract.fk_customer_ID = customer.customer_ID
+INNER JOIN
+car on car.car_ID = rental_contract.fk_car_ID
+INNER JOIN
+car_model on car_model.car_model_ID = car.fk_model_ID
+INNER JOIN
+manufacturer on manufacturer.manufacturer_ID = car_model.fk_manufacturer_ID
+WHERE
+manufacturer_name = 'Mercedes'
+order BY
+pickup_datetime;
+
+Query 2:
+
+SELECT customer.first_name, customer.last_name, invoice.total
+FROM `customer` 
+INNER JOIN 
+rental_contract on rental_contract.fk_customer_ID = customer.customer_ID
+INNER JOIN
+invoice on rental_contract.fk_invoice_ID =invoice.invoice_ID
+WHERE
+customer.last_name = 'Glavina';
+
+Query 3:
+
+SELECT COUNT(*)
+FROM invoice
+WHERE
+total > 300;
+
